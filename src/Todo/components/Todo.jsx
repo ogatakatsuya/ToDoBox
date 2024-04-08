@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { db } from './Firebase';
+import { db } from '../../Firebase';
 import { collection, getDocs, addDoc, deleteDoc, doc, onSnapshot, updateDoc } from 'firebase/firestore';
 import { format } from 'date-fns'; 
 import { VStack, Heading, HStack, IconButton, StackDivider, Text, Input, Button, useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalFooter } from '@chakra-ui/react';
@@ -28,13 +28,13 @@ const Todo = () => {
     const todo = enteredTodo;
     const date = enteredDate;
 
-    console.log(date)
-
     const tasksCollectionRef = collection(db, 'tasks');
     await addDoc(tasksCollectionRef, {
       todo: todo,
       date: date,
     });
+
+    setEnteredTodo("");
   }
   const openEditModal = (id) => {
     setSelectedTodoId(id);
