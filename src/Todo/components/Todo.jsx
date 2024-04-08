@@ -74,64 +74,103 @@ const Todo = () => {
       p={5}
       alignItems="start"
     >
-      {tasks.map((task) => {
-          let date = task.date;
-          if (date instanceof Date === false && date?.toDate instanceof Function) {
-            date = date.toDate();
-          }
-          const formatDate = format(date, 'yyyy/MM/dd');
-        return (
-          <HStack 
-          key={task.id} 
-          spacing="5" 
-          justifyContent="flex-start"
-          width="100%"
-          >
-          <Text minWidth="200px">{task.todo}</Text>
-          <Text>{formatDate}</Text>
-          <HStack spacing="2">
-            <IconButton icon={<AiOutlineForm />} isRound onClick={() => openEditModal(task.id)}>
-              編集
-            </IconButton>
-            <Modal isOpen={isOpen} onClose={onClose}>
-            <ModalOverlay />
-                <ModalContent>
-                    <ModalHeader>編集する</ModalHeader>
-                    <ModalCloseButton />
-                    <ModalFooter>
-                    <Input
-                    placeholder="タスクを編集する"
-                    _placeholder={{ opacity: "0.3", color: "gray.500" }}
-                    size="lg"
-                    p={3}
-                    bgColor="white"
-                    variant="flushed"
-                    value={updatedTodo}
-                    onChange={(e) => setUpdatedTodo(e.target.value)}
-                    />
-                    <Button
-                    colorScheme="blue"
-                    size="md"
-                    bgColor="white"
-                    variant="outline"
-                    px={7}
-                    type="submit"
-                    onClick={() => updateTodo(selectedTodoId)}
-                    >更新</Button>
-                    </ModalFooter>
-                </ModalContent>
-        </Modal>
-            <IconButton
+{tasks.map((task) => {
+  let date = task.date;
+  if (date instanceof Date === false && date?.toDate instanceof Function) {
+    date = date.toDate();
+  }
+  const formatDate = format(date, 'yyyy/MM/dd');
+
+  return (
+    <HStack 
+      key={task.id} 
+      spacing="5" 
+      justifyContent="flex-start"
+      width="100%"
+    >
+      <Text minWidth="200px">{task.todo}</Text>
+      <HStack spacing="2" width="150px"> {/* 固定の幅を設定 */}
+        <Text minWidth="100px">{formatDate}</Text> {/* 日付の表示幅を固定 */}
+        <HStack spacing="2">
+          <IconButton icon={<AiOutlineForm />} isRound onClick={() => openEditModal(task.id)}>
+            編集
+          </IconButton>
+          <IconButton
             icon={<AiOutlineDelete />} 
             isRound bgColor="cyan.100"
             onClick={() => deleteTodo(task.id)}
-            >
+          >
             削除
-            </IconButton>
-          </HStack>
+          </IconButton>
         </HStack>
-        );
-      })}
+      </HStack>
+    </HStack>
+  );
+})}{tasks.map((task) => {
+  let date = task.date;
+  if (date instanceof Date === false && date?.toDate instanceof Function) {
+    date = date.toDate();
+  }
+  const formatDate = format(date, 'yyyy/MM/dd');
+
+  return (
+    <HStack 
+      key={task.id} 
+      spacing="5" 
+      justifyContent="flex-start"
+      width="100%"
+    >
+      <Text minWidth="200px">{task.todo}</Text>
+      <HStack spacing="2" width="150px"> {/* 固定の幅を設定 */}
+        <Text minWidth="100px">{formatDate}</Text> {/* 日付の表示幅を固定 */}
+        <HStack spacing="2">
+          <IconButton icon={<AiOutlineForm />} isRound onClick={() => openEditModal(task.id)}>
+            編集
+          </IconButton>
+          <IconButton
+            icon={<AiOutlineDelete />} 
+            isRound bgColor="cyan.100"
+            onClick={() => deleteTodo(task.id)}
+          >
+            削除
+          </IconButton>
+        </HStack>
+      </HStack>
+    </HStack>
+  );
+})}{tasks.map((task) => {
+  let date = task.date;
+  if (date instanceof Date === false && date?.toDate instanceof Function) {
+    date = date.toDate();
+  }
+  const formatDate = format(date, 'yyyy/MM/dd');
+
+  return (
+    <HStack 
+      key={task.id} 
+      spacing="5" 
+      justifyContent="flex-start"
+      width="100%"
+    >
+      <Text minWidth="200px">{task.todo}</Text>
+      <HStack spacing="2" width="150px"> {/* 固定の幅を設定 */}
+        <Text minWidth="100px">{formatDate}</Text> {/* 日付の表示幅を固定 */}
+        <HStack spacing="2">
+          <IconButton icon={<AiOutlineForm />} isRound onClick={() => openEditModal(task.id)}>
+            編集
+          </IconButton>
+          <IconButton
+            icon={<AiOutlineDelete />} 
+            isRound bgColor="cyan.100"
+            onClick={() => deleteTodo(task.id)}
+          >
+            削除
+          </IconButton>
+        </HStack>
+      </HStack>
+    </HStack>
+  );
+})}
       </VStack>
       <form onSubmit={addTodo}>
         <HStack>
