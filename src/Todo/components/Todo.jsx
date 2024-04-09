@@ -2,11 +2,13 @@ import { useState, useEffect } from 'react';
 import { db } from '../../Firebase';
 import { collection, getDocs, addDoc, deleteDoc, doc, onSnapshot, updateDoc } from 'firebase/firestore';
 import { format } from 'date-fns'; 
-import { VStack, Heading, HStack, IconButton, StackDivider, Text, Input, Button, useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalFooter } from '@chakra-ui/react';
+import { VStack, Heading, HStack, IconButton, StackDivider, Text, Input, Button, useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalFooter, useToast } from '@chakra-ui/react';
 import { AiOutlineDelete, AiOutlineForm } from "react-icons/ai";
 
 const Todo = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const toast = useToast();
+  
   const [tasks, setTasks] = useState([]);
   const [enteredTodo, setEnteredTodo] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
@@ -44,7 +46,7 @@ const Todo = () => {
       });
       return;
     }
-    
+
     const todo = enteredTodo;
     const date = enteredDate;
 
