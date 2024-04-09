@@ -25,6 +25,26 @@ const Todo = () => {
 
   const addTodo = async (e) => {
     e.preventDefault();
+
+    if (!enteredTodo) {
+      toast({
+        title: "新しいタスクを入力してください",
+        status: "error",
+        duration: 2000,
+        isClosable: true,
+      });
+      return;
+    }
+    if (!enteredDate) {
+      toast({
+        title: "期限を入力してください",
+        status: "error",
+        duration: 2000,
+        isClosable: true,
+      });
+      return;
+    }
+    
     const todo = enteredTodo;
     const date = enteredDate;
 
