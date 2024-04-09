@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { format } from 'date-fns'; 
-import { VStack, HStack, IconButton, StackDivider, Text, Input, Button, useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalFooter} from '@chakra-ui/react';
+import { VStack, HStack, IconButton, StackDivider, Text, useDisclosure } from '@chakra-ui/react';
 import { AiOutlineDelete, AiOutlineForm } from "react-icons/ai";
 import MakeMordal from './MakeMordal';
 
