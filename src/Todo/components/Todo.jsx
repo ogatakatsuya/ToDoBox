@@ -8,7 +8,7 @@ import { AiOutlineDelete, AiOutlineForm } from "react-icons/ai";
 const Todo = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
-  
+
   const [tasks, setTasks] = useState([]);
   const [enteredTodo, setEnteredTodo] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
@@ -57,6 +57,13 @@ const Todo = () => {
     });
 
     setEnteredTodo("");
+    toast({
+      title: "新しいタスクを追加しました！",
+      description: enteredTodo,
+      status: "info",
+      duration: 3000,
+      isClosable: true,
+    });  
   }
   const openEditModal = (id) => {
     setSelectedTodoId(id);
@@ -75,6 +82,13 @@ const Todo = () => {
     })
     onClose();
     setUpdatedTodo("");
+    toast({
+      title: "タスクを編集しました！",
+      description: updatedTodo,
+      status: "info",
+      duration: 3000,
+      isClosable: true,
+    });  
   }
 
   return (
