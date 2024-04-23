@@ -1,6 +1,6 @@
 import { Input, Button, FormErrorMessage, FormLabel, FormControl } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, setPersistence, browserSessionPersistence } from 'firebase/auth';
 
 import { auth } from '../../Firebase';
 
@@ -12,17 +12,20 @@ const Login = () => {
     } = useForm()
 
     const onSubmit = (data) => {
-        signInWithEmailAndPassword(auth, data.email, data.password)
-        .then(() => {
-            console.log("login successfully!");
+        setPersistence(auth, browserSessionPersistence)
+            .then(() => {
+                return signInWithEmailAndPassword(auth, data.email, data.password);
+            })
+            .then(() => {
+                console.log("login successfully!");
             })
             .catch((error) => {
-                if(error.code === "auth/invalid-credential"){
+                if (error.code === "auth/invalid-credential") {
                     alert("そのようなユーザーは存在しません。");
-                }else{
+                } else {
                     alert(error.message);
                 }
-        });
+            });
     }
     return (
         <>
