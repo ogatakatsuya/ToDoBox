@@ -8,11 +8,11 @@ import { auth } from "../Firebase";
 
 const Example = () => {
     const [ user, setUser ] = useState("");
+
     useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                setUser(user);
-                console.log(user)
+        onAuthStateChanged(auth, (data) => {
+            if (data) {
+                setUser(data.uid);
             } else {
             }
         })
@@ -20,7 +20,7 @@ const Example = () => {
     return (
         <>
         <ChakraProvider>
-            { user ? <Todo setUser={setUser}/> : <Auth />}
+            { user ? <Todo setUser={setUser} user_id={user}/> : <Auth />}
         </ChakraProvider>
         </>
     );

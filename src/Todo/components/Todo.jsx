@@ -1,25 +1,26 @@
 import { useState, useEffect } from 'react';
 import { db } from '../../Firebase';
-import { collection, addDoc, deleteDoc, doc, onSnapshot, updateDoc } from 'firebase/firestore';
+import { collection, addDoc, deleteDoc, doc, onSnapshot, query, where } from 'firebase/firestore';
 import { VStack, Heading, useToast} from '@chakra-ui/react';
 
 import List from './List';
 import Form from './Form';
 import Logout from './Logout';
 
-const Todo = ({setUser}) => {
+const Todo = ({setUser, user_id}) => {
   const [tasks, setTasks] = useState([]);
   const toast = useToast();
 
   useEffect(() => {
     const tasksCollectionRef = collection(db, 'tasks');
-    const unsub = onSnapshot(tasksCollectionRef, (querySnapshot) => {
-    setTasks(
+    const q = query(tasksCollectionRef, where("user_id", "==", user_id));
+    const unsub = onSnapshot(q, (querySnapshot) => {
+      setTasks(
         querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-        );
+      );
     });
     return unsub;
-    }, []);
+  }, [user_id]);
 
   const deleteTodo = async (id) => {
     const taskCollectionRef = doc( db, 'tasks', id );
@@ -41,10 +42,12 @@ const Todo = ({setUser}) => {
   }
 
   const createTodo = async ( todo, date ) => {
+    console.log("task add");
     const tasksCollectionRef = collection(db, 'tasks');
     await addDoc(tasksCollectionRef, {
         todo: todo,
         date: date,
+        user_id: user_id,
     });
   }
 

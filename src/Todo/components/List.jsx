@@ -25,6 +25,10 @@ const List = ({tasks, updateTodo, deleteTodo}) => {
     }
 
     return (
+        <>
+        {tasks.length === 0 ? (
+            <Text>新しいタスクを追加しましょう！</Text>
+        ):(
         <VStack
         divider={<StackDivider />}
         width="100%"
@@ -66,6 +70,8 @@ const List = ({tasks, updateTodo, deleteTodo}) => {
             );
         })}
         </VStack>
+        )}
+        </>
     )
 }
 export default List;

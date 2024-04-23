@@ -4,7 +4,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 import { auth } from '../../Firebase';
 
-const Register = ({user,setUser}) => {
+const Register = () => {
     const {
         register,
         handleSubmit,

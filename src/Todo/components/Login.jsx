@@ -56,6 +56,7 @@ const Login = () => {
                 _placeholder={{ opacity: "0.3", color: "gray.500" }}
                 size="lg"
                 p={3}
+                type='password'
                 bgColor="white"
                 variant="flushed"
                 {...register("password", {
