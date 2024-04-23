@@ -5,8 +5,9 @@ import { VStack, Heading, useToast} from '@chakra-ui/react';
 
 import List from './List';
 import Form from './Form';
+import Logout from './Logout';
 
-const Todo = () => {
+const Todo = ({setUser}) => {
   const [tasks, setTasks] = useState([]);
   const toast = useToast();
 
@@ -49,15 +50,16 @@ const Todo = () => {
 
   return (
     <>
-      <VStack 
-      p="10" 
-      spacing="10"
-      alignContent="center">
+    <VStack 
+    p="10" 
+    spacing="10"
+    alignContent="center">
       <Heading color="blue.200" fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }}>
         ToDoBox
       </Heading>
-    <List tasks={tasks} updateTodo={updateTodo} deleteTodo={deleteTodo}/>
-    <Form createTodo={createTodo}/>
+      <List tasks={tasks} updateTodo={updateTodo} deleteTodo={deleteTodo}/>
+      <Form createTodo={createTodo}/>
+      <Logout setUser={setUser}/>
     </VStack>
   </>
   );

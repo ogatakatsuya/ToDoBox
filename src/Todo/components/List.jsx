@@ -50,22 +50,18 @@ const List = ({tasks, updateTodo, deleteTodo}) => {
                 width="100%"
             >
                 <Text minWidth="200px">{task.todo}</Text>
-                <HStack spacing="2" width="150px">
-                    <Text minWidth="100px">{formatDate}</Text>
-                    <HStack spacing="2">
-                        <IconButton icon={<AiOutlineForm />} isRound onClick={() => openEditModal(task.id)}>
-                        編集
-                        </IconButton>
-                        <MakeMordal isOpen={isOpen} onClose={onClose} updatedTodo={updatedTodo} setUpdatedTodo={setUpdatedTodo} editTasks={editTasks} selectedTodoId={selectedTodoId} />
-                        <IconButton
-                        icon={<AiOutlineDelete />} 
-                        isRound bgColor="cyan.100"
-                        onClick={() => completeTasks(task.id)}
-                        >
-                        削除
-                        </IconButton>
-                    </HStack>
-                </HStack>
+                <Text minWidth="100px">{formatDate}</Text>
+                <IconButton icon={<AiOutlineForm />} isRound onClick={() => openEditModal(task.id)}>
+                編集
+                </IconButton>
+                <MakeMordal isOpen={isOpen} onClose={onClose} updatedTodo={updatedTodo} setUpdatedTodo={setUpdatedTodo} editTasks={editTasks} selectedTodoId={selectedTodoId} />
+                <IconButton
+                icon={<AiOutlineDelete />} 
+                isRound bgColor="cyan.100"
+                onClick={() => completeTasks(task.id)}
+                >
+                削除
+                </IconButton>
             </HStack>
             );
         })}
