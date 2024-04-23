@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { db } from '../../Firebase';
-import { collection, addDoc, deleteDoc, doc, onSnapshot, query, where } from 'firebase/firestore';
+import { collection, addDoc, deleteDoc, doc, onSnapshot, query, where, updateDoc } from 'firebase/firestore';
 import { VStack, Heading, useToast} from '@chakra-ui/react';
 
 import List from './List';
